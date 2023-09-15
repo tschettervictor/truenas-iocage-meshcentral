@@ -92,7 +92,7 @@ fi
 # Sanity check DATA_PATH, FILES_PATH, BACKUPS_PATH, and POOL_PATH
 if [ "${DATA_PATH}" = "${FILES_PATH}" ] || [ "${DATA_PATH}" = "${BACKUPS_PATH}" ] || [ "${DATA_PATH}" = "${POOL_PATH}" ] || [ "${FILES_PATH}" = "${BACKUPS_PATH}" ] || [ "${FILES_PATH}" = "${POOL_PATH}" ] || [ "${BACKUPS_PATH}" = "${POOL_PATH}" ]
 then
-  echo "DATA_PATH, FILES_PATH, BACKUPS_PATH and POOL_PATH must be different
+  echo "DATA_PATH, FILES_PATH, BACKUPS_PATH and POOL_PATH must be different"
   exit 1
 fi
 
