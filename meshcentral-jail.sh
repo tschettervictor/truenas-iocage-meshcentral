@@ -145,6 +145,7 @@ mkdir -p "${POOL_PATH}"/meshcentral/backups
 iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral-data
 iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral-files
 iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral-backups
+iocage exec "${JAIL_NAME}" mkdir -p /mnt/includes
 iocage exec "${JAIL_NAME}" mkdir -p /usr/local/etc/rc.d
 iocage fstab -a "${JAIL_NAME}" "${DATA_PATH}" /usr/local/meshcentral-data nullfs rw 0 0
 iocage fstab -a "${JAIL_NAME}" "${FILES_PATH}" /usr/local/meshcentral-files nullfs rw 0 0
