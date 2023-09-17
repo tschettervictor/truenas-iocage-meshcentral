@@ -158,7 +158,7 @@ iocage fstab -a "${JAIL_NAME}" "${INCLUDES_PATH}" /mnt/includes nullfs rw 0 0
 #
 #####
 
-iocage exec "${JAIL_NAME}" cd /usr/local && npm install meshcentral
+iocage exec "${JAIL_NAME}" "cd /usr/local && npm install meshcentral"
 iocage exec "${JAIL_NAME}" cp -f /mnt/includes/meshcentral /usr/local/etc/rc.d/
 iocage exec "${JAIL_NAME}" sysrc meshcentral_enable="YES"
 iocage exec "${JAIL_NAME}" service meshcentral start && sleep 5
