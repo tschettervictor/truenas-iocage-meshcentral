@@ -139,6 +139,9 @@ rm /tmp/pkg.json
 #
 #####
 
+mkdir -p "${POOL_PATH}"/meshcentral/data
+mkdir -p "${POOL_PATH}"/meshcentral/files
+mkdir -p "${POOL_PATH}"/meshcentral/backups
 iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral-data
 iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral-files
 iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral-backups
