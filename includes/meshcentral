@@ -1,28 +1,24 @@
 #!/bin/sh
 
-# $FreeBSD: 340872 2014-01-24 00:14:07Z mat $
-#
+# MeshCentral FreeBSD Service Script
+
 # PROVIDE: meshcentral
 # REQUIRE: NETWORKING
 # KEYWORD: shutdown
-#
-# Add the following line to /etc/rc.conf to enable meshcentral:
-#
-# meshcentral_enable="YES"
-#
 
 . /etc/rc.subr                                                                                       
-                                                                                                    
+
+load_rc_config $name                                                                                 
+
+: ${meshcentral_enable:="NO"}
+: ${meshcentral_pidfile:="/var/run/meshcentral.pid"}
+: ${meshcentral_chdir:="/usr/local/node_modules"}                                                                                              
+
 name="meshcentral"                                                                                   
 rcvar=meshcentral_enable                                                                             
-pidfile=${meshcentral_pidfile:-"/var/run/meshcentral.pid"} 
-meshcentral_chdir="/usr/local/node_modules"                                                            
-HOME=/usr/local/node_modules
 command="/usr/sbin/daemon"                                                                           
 PATH=${PATH}:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/root/bin                 
-command_args="-r -P /var/run/meshcentral.pid /usr/local/bin/node /usr/local/node_modules/meshcentral"
+procname="/usr/local/bin/node"
+command_args="-r -P ${meshcentral_pidfile} ${procname} ${meshcentral_chdir}/${name}"
                                                                                                     
-load_rc_config $name                                                                                 
-: ${meshcentral_enable:="NO"}                                                                         
-
 run_rc_command "$1"
