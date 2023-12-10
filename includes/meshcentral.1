@@ -19,8 +19,7 @@ rcvar=meshcentral_enable
 
 pidfile=/var/run/${name}/${name}.pid
 command="/usr/sbin/daemon"
-procname="/usr/local/bin/node"
 meshcentral_chdir=/usr/local/node_modules
-command_args="-r -P ${pidfile} ${procname} ${meshcentral_chdir}/${name} ${meshcentral_args}"
+command_args="-r -P ${pidfile} /usr/local/bin/node ${meshcentral_chdir}/${name} ${meshcentral_args}"
 
 run_rc_command "$1"
