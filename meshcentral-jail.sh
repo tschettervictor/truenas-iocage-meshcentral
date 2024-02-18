@@ -159,8 +159,7 @@ iocage fstab -a "${JAIL_NAME}" "${INCLUDES_PATH}" /mnt/includes nullfs rw 0 0
 #
 #####
 
-iocage exec "${JAIL_NAME}" "pw useradd meshcentral -u 6347 -d /nonexistent -s /usr/local/bin/bash -h 0"
-#iocage exec "${JAIL_NAME}" "pw user add meshcentral -c meshcentral -u 6374"
+iocage exec "${JAIL_NAME}" "pw user add meshcentral -c meshcentral -u 6374 -s /usr/bin/nologin -d /home"
 iocage exec "${JAIL_NAME}" "cd /usr/local/meshcentral && npm install meshcentral"
 iocage exec "${JAIL_NAME}" "chown -R meshcentral:meshcentral /usr/local/meshcentral"
 iocage exec "${JAIL_NAME}" "chown -R meshcentral:meshcentral /var/run/meshcentral"
