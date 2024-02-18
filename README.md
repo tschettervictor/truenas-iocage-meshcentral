@@ -4,7 +4,7 @@ Script to create an iocage jail on TrueNAS for the latest MeshCentral release.
 This script will create an iocage jail on TrueNAS CORE 13.0 with the latest release of MeshCentral, along with its dependencies. It will configure the jail to store the data and files outside the jail, so it will not be lost in the event you need to rebuild the jail.
 
 ## Status
-This script will work with TrueNAS CORE 13.0.  Due to the EOL status of FreeBSD 12.0, it is unlikely to work reliably with earlier releases of FreeNAS.
+This script will work with TrueNAS CORE 13.0
 
 ## Usage
 
@@ -20,14 +20,12 @@ Download the repository to a convenient directory on your TrueNAS system by chan
 JAIL_IP="192.168.1.199"
 DEFAULT_GW_IP="192.168.1.1"
 POOL_PATH="/mnt/tank"
-HOST_NAME="YOUR_FQDN"
 ```
 Many of the options are self-explanatory, and all should be adjusted to suit your needs, but only a few are mandatory.  The mandatory options are:
 
 * JAIL_IP is the IP address for your jail.  You can optionally add the netmask in CIDR notation (e.g., 192.168.1.199/24).  If not specified, the netmask defaults to 24 bits.  Values of less than 8 bits or more than 30 bits are invalid.
 * DEFAULT_GW_IP is the address for your default gateway
 * POOL_PATH is the path for your data pool.
-* HOST_NAME is the fully-qualified domain name you want to assign to your installation.
  
 In addition, there are some other options which have sensible defaults, but can be adjusted if needed.  These are:
 
@@ -44,4 +42,4 @@ Once you've downloaded the script and prepared the configuration file, run this 
 
 ### Notes
 - Reinstalls work as expected when the previous data is present.
-- MeshCentral is extremely simple to install, but has many options and configurations available. These are all set in a config file located at `/usr/local/meshcentral-data/config.json`
+- MeshCentral is extremely simple to install, but has many options and configurations available. These are all set in a config file located at `/usr/local/meshcentral/meshcentral-data/config.json`
