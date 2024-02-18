@@ -8,19 +8,18 @@
 
 . /etc/rc.subr
 
-load_rc_config $name
-
 name=meshcentral
-user=meshcentral
 desc="MeshCentral"
 rcvar=meshcentral_enable
 
 : ${meshcentral_enable:="NO"}
+: ${meshcentral_user:="meshcentral"}
 : ${meshcentral_args:=""}
 
 pidfile=/var/run/${name}/${name}.pid
 command="/usr/sbin/daemon"
 meshcentral_chdir="/usr/local/meshcentral/node_modules"
-command_args="-r -u ${user} -P ${pidfile} /usr/local/bin/node ${meshcentral_chdir}/${name} ${meshcentral_args}"
+command_args="-r -u ${meshcentral_user} -P ${pidfile} /usr/local/bin/node ${meshcentral_chdir}/${name} ${meshcentral_args}"
 
+load_rc_config $name
 run_rc_command "$1"
