@@ -44,5 +44,5 @@ Once you've downloaded the script and prepared the configuration file, run this 
 
 ### Notes
 - Reinstalls work as expected when the previous data is present.
-- Since Meshcentral will run as the meshcentral user, the default port that will be used is 1025. If you want to run on 443 or 80, you can alter the rc.d script to run as the root user by `sysrc meshcentral_user=root` and `sysrc meshcentral_group=wheel` and modifying the owner and group of `/var/run/meshcentral` and `/usr/local/meshcentraal` to be `root:wheel` Otherwise, please run it behind a reverse proxy.
+- Since Meshcentral will run as the meshcentral user, and low port binding is not allowed by users other thatn root, the default port that will be used is 1025.
 - MeshCentral is extremely simple to install, but has many options and configurations available. These are all set in a config file located at `/usr/local/meshcentral/meshcentral-data/config.json`
