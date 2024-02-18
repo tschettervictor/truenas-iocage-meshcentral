@@ -142,15 +142,15 @@ rm /tmp/pkg.json
 mkdir -p "${POOL_PATH}"/meshcentral/data
 mkdir -p "${POOL_PATH}"/meshcentral/files
 mkdir -p "${POOL_PATH}"/meshcentral/backups
-iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral-data
-iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral-files
-iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral-backups
+iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral/meshcentral-data
+iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral/meshcentral-files
+iocage exec "${JAIL_NAME}" mkdir -p /usr/local/meshcentral/meshcentral-backups
 iocage exec "${JAIL_NAME}" mkdir -p /mnt/includes
 iocage exec "${JAIL_NAME}" mkdir -p /usr/local/etc/rc.d
 iocage exec "${JAIL_NAME}" mkdir -p /var/run/meshcentral
-iocage fstab -a "${JAIL_NAME}" "${DATA_PATH}" /usr/local/meshcentral-data nullfs rw 0 0
-iocage fstab -a "${JAIL_NAME}" "${FILES_PATH}" /usr/local/meshcentral-files nullfs rw 0 0
-iocage fstab -a "${JAIL_NAME}" "${BACKUPS_PATH}" /usr/local/meshcentral-backups nullfs rw 0 0
+iocage fstab -a "${JAIL_NAME}" "${DATA_PATH}" /usr/local/meshcentral/meshcentral-data nullfs rw 0 0
+iocage fstab -a "${JAIL_NAME}" "${FILES_PATH}" /usr/local/meshcentral/meshcentral-files nullfs rw 0 0
+iocage fstab -a "${JAIL_NAME}" "${BACKUPS_PATH}" /usr/local/meshcentral/meshcentral-backups nullfs rw 0 0
 iocage fstab -a "${JAIL_NAME}" "${INCLUDES_PATH}" /mnt/includes nullfs rw 0 0
 
 #####
@@ -159,7 +159,10 @@ iocage fstab -a "${JAIL_NAME}" "${INCLUDES_PATH}" /mnt/includes nullfs rw 0 0
 #
 #####
 
-iocage exec "${JAIL_NAME}" "cd /usr/local && npm install meshcentral"
+iocage exec "${JAIL_NAME}" "pw user add meshcentral -c meshcentral -u 6374 -d /nonexistent -s /usr/bin/nologin"
+iocage exec "${JAIL_NAME}" "cd /usr/local/meshcentral && npm install meshcentral"
+iocage exec "${JAIL_NAME}" "chown -R meshcentral:meshcentral /usr/local/meshcentral"
+iocage exec "${JAIL_NAME}" "chown -R meshcentral:meshcentral /var/run/meshcentral"
 iocage exec "${JAIL_NAME}" cp -f /mnt/includes/meshcentral /usr/local/etc/rc.d/
 iocage exec "${JAIL_NAME}" sysrc meshcentral_enable="YES"
 iocage exec "${JAIL_NAME}" service meshcentral start && sleep 5
