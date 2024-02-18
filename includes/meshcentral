@@ -14,25 +14,13 @@ rcvar=meshcentral_enable
 
 : ${meshcentral_enable:="NO"}
 : ${meshcentral_user:="meshcentral"}
+: ${meshcentral_group:="meshcentral"}
 : ${meshcentral_args:=""}
 
 pidfile=/var/run/${name}/${name}.pid
 command="/usr/sbin/daemon"
 meshcentral_chdir="/usr/local/meshcentral/node_modules"
 command_args="-r -u ${meshcentral_user} -P ${pidfile} /usr/local/bin/node ${meshcentral_chdir}/${name} ${meshcentral_args}"
-
-start_precmd="${name}_precmd"
-
-meshcentral_precmd()
-{
-    if [ ! -d /var/run/${name} ]; then
-        mkdir -p /var/run/${name}
-        chown ${meshcentral_user}:${meshcentral_user} /var/run/${name}
-    fi
-    if [ ! -e /usr/local/${name} ]; then
-        chown -R ${meshcentral_user}:${meshcentral_user} /usr/local/${name}
-    fi
-}
 
 load_rc_config $name
 run_rc_command "$1"
