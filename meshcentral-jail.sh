@@ -1,5 +1,5 @@
 #!/bin/sh
-# Build an iocage jail under TrueNAS 13.0 using the current release of MeshCentral
+# Build an iocage jail under TrueNAS 13.0 and install MeshCentral
 # git clone https://github.com/tschettervictor/truenas-iocage-meshcentral
 
 # Check for root privileges
